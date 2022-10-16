@@ -1,3 +1,4 @@
+from extended_euclidean_algorithm import extended_euclidean_algorithm
 print("\n\nChinese remainder theorem\n\n")
 def enter():
     st = ""
@@ -15,37 +16,6 @@ def enter():
          break
     return lst
 
-def rev(Mi, m, flag):
-    a = m
-    b = Mi
-    x2 = 1
-    x1 = 0
-    y2 = 0
-    y1 = 1
-    if flag:
-        print()
-        print("q   r    x    y   a   b   x2   x1   y2   y1")
-        print(f"-   -    -    -  {a} {b}   1    0    0     1")
-    while (b != 0):
-        q = a // b
-        r = a % b
-        x = x2 - q*x1
-        y = y2 - q*y1
-        a = b
-        b = r
-        x2 = x1
-        x1 = x
-        y2 = y1
-        y1 = y
-        if flag:
-            print(f"{q}   {r}   {x}   {y}   {a}   {b}   {x2}   {x1}   {y2}   {y1}")
-    if flag:
-        print(y2)
-        print()
-        print()
-    return y2
-
-
 def calcM(l):
     n = len(l)
     M = 1
@@ -62,7 +32,7 @@ def calc(l, flag):
         a = int(l[i][0])
         m = int(l[i][1])
         Mi = int(M/m)
-        y = rev(Mi, m, flag)
+        y = extended_euclidean_algorithm(Mi, m, flag)
         x += a*Mi*y
     return x
 
